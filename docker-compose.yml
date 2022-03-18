@@ -1,0 +1,66 @@
+version: '2'
+
+
+services:
+  db:
+    image: mongo:latest
+    container_name: mongoDB
+    environment:
+      MONGO_INITDB_DATABASE: RoundRobinService
+      MONGO_INITDB_ROOT_USERNAME: Admin
+      MONGO_INITDB_ROOT_PASSWORD: Admin
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - mongodb:/data/db
+      - mongodb_config:/data/configdb
+    ports:
+      - 27017:27017
+    command: mongod
+
+
+  app-lb-roundrobin:
+    build:
+      context: ./TALLERR
+      dockerfile: Dockerfile
+    depends_on:
+      - logservice1
+      - logservice2
+      - logservice3
+    container_name: app-lb-roundrobin
+    ports:
+      - "35000:6000"
+
+  logservice1:
+    build:
+      context: ./RoundRobin
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    container_name: logservice1
+    ports:
+      - "35001:6000"
+
+  logservice2:
+    build:
+      context: ./RoundRobin
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    container_name: logservice2
+    ports:
+      - "35002:6000"
+
+  logservice3:
+    build:
+      context: ./RoundRobin
+      dockerfile: Dockerfile
+    depends_on:
+      - db
+    container_name: logservice3
+    ports:
+      - "35003:6000"
+
+
+volumes:
+  mongodb:
+  mongodb_config:
