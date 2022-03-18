@@ -283,10 +283,31 @@ En reglas de entrada le damos a "editar reglas de entrada"
 ![](img/editarReglasEntrada.png)
 
 En la pestaña que aparece, se agregaran reglas, una por cada puerto, en este caso seran 5 reglas, una 
-para el puerto ```35000``` para roundrobin, ```35001``` para logservice1, ```35002``` para logservice2, 
-```35003``` para logservice3 y ```27017``` para mongo y queda de la siguiente forma
+para el puerto ```35004``` para roundrobin, ```35005``` para logservice1, ```35006``` para logservice2, 
+```35007``` para logservice3 y ```27017``` para mongo y queda de la siguiente forma
 
 ![](img/puertosReglaEntrada.png)
 
 Y ahora haremos el mismo proceso para las reglas de salida para que se pueda comunicar la información que 
 envian entre puertos
+
+
+## Despliegue en AWS
+Se despliega en AWS, se ejecutan las imágenes que se encuentran en el repositorio para que las guarde y 
+ejecute, con los siguientes comandos
+
+   ```
+     docker run -dp 35004:6000 --name rb arep2022/round_robin_docker:app-lb-roundrobin
+   ``` 
+   ```
+     docker run -dp 35005:6000 --name lg1 arep2022/round_robin_docker:logservice1
+   ```
+   ```
+     docker run -dp 35006:6000 --name lg2 arep2022/round_robin_docker:logservice2
+   ```
+   ```
+     docker run -dp 35007:6000 --name lg3 arep2022/round_robin_docker:logservice3
+   ```
+   ```
+     docker run -dp 27018:6000 --name bdm arep2022/round_robin_docker:mongodb
+   ```
