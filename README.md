@@ -113,3 +113,77 @@ Despues podremos acceder al proyecto desplegado en nuestro docker local, consult
    ```
 Donde el puerto: 35000 es el puerto al que se enlazo con uno fisico de la maquina local y que este nos permite
 acceder, como se muestra a continuacion
+
+## Despliegue en Docker Hub
+Para realizar el despliegue en docker hub, se crea un repositorio para subir el proyecto para despues poder
+desplegar las imagenes en AWS
+
+* Nombre de Usuario: arep2022
+* Nombre del Repositorio: round_robin_docker
+
+Ahora se crearan nuevos tag para las imagenes, que esto es para tener una referencia de donde queremos subirlo,
+en este caso es en el repositorio antes mencionado en docker hub. Para esto el comando es el siguiente
+
+   ```
+      docker tag tallerroundrobin-dockeraws_app-lb-roundrobin:latest arep2022/round_robin_docker:app-lb-roundrobin
+   ```
+
+   ```
+      docker tag tallerroundrobin-dockeraws_logservice1:latest arep2022/round_robin_docker:logservice1
+   ```
+
+   ```
+      docker tag tallerroundrobin-dockeraws_logservice2:latest arep2022/round_robin_docker:logservice2
+   ```
+
+   ```
+      docker tag tallerroundrobin-dockeraws_logservice3:latest arep2022/round_robin_docker:logservice3
+   ```
+
+
+Con lo cual en la consola obtenemos el siguiente resultado
+  
+![](img/dockerTag.png)
+
+   ```
+       docker tag mongo:latest arep2022/round_robin_docker:mongodb
+   ```
+
+![](img/dockerTagMongo.png)
+
+Despues podemos verificar que se crearon con
+
+   ```
+      docker images
+   ```
+Obteniendo como resultado
+
+![](img/verificarDockerTag.png)
+
+![](img/verificarDockerTagMongo.png)
+
+Ahora lo que hay que hacer es subirlas al repositorio en docker hub,si no se ha iniciado sesion se hace
+primero un ```docker login```, en donde se le pediran las credenciales. Despues del inicio de sesion se
+utiliza el siguiente comando
+
+   ```
+      docker push arep2022/round_robin_docker:app-lb-roundrobin
+   ```
+   ```
+      docker push arep2022/round_robin_docker:logservice1
+   ```
+   ```
+      docker push arep2022/round_robin_docker:logservice2
+   ```
+   ```
+      docker push arep2022/round_robin_docker:logservice3
+   ```
+   ```
+      docker push arep2022/round_robin_docker:mongodb
+   ```
+Una vez subidas, podemos verificar en docker hub si realmente se subieron sin ningun problema, como se
+muestra a continuacion
+
+![](img/imagenesDockerHub.png)
+
+
