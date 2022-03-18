@@ -190,3 +190,82 @@ muestra a continuacion
 ![](img/imagenesDockerHub.png)
 
 
+## Creacion Maquina en AWS
+Para poder desplegar en AWS se debe crear una maquina virtual EC2, para esto nos dirigimos a la consola de
+AWS e iniciarla y una vez iniciada se nos pondra en verde el indicador
+
+![](img/consolaAWS.png)
+
+Le damos click en el indicador verde y nos enviara a la pagina donde podremos lanzar la maquina virtual
+EC2 y en donde podemos seleccionar cualquiera de las opciones que dice apta para la capa, en este caso
+se selecciona la primera
+
+![](img/SeleccionEC2.png)
+
+Una vez seleccionada, nos mostrara las caracteristicas del sistema operativa, se deja por defecto la opcion
+que se muestra y le damos a revisar y lanzar
+
+![](img/caracteristicasEC2.png)
+
+Despues nos muesra todas las caracteristicas de la maquina, en donde no se va a tocar nada y despues oprimimos
+en lanzar
+
+![](img/caracteristicasGeneralesEC2.png)
+
+Despues de darle a lanzar, encontraremos el siguiente menu, en donde se debe dar en "Crear nuevo par de llaves"
+, le damos un nombre, las descargamos y despues damos en lanzar instancia.
+
+![](img/parLlaves.png)
+
+Despues podemos revisar la instancia en el panel, donde a continuacion le damos en acciones y en conectar
+
+![](img/instancia.png)
+
+Se despliega un menu donde nos da la opcion de conectarnos via SSH, utilizando el siguiente comando
+
+   ```
+      ssh -i "roundrobin.pem" ec2-user@ec2-3-94-180-238.compute-1.amazonaws.com
+   ```
+
+Con el par de llaves en la ubicacion donde estan descargadas, en mi caso en descargas se pone el comando anterior para
+conectarse a la maquina EC2 via ssh como se muestra a continuacion
+
+![](img/conexionSSH.png)
+
+Escribimos el siguiente comando para actualizar el sistema a la version mas reciente
+
+   ```
+      sudo yum update -y
+   ```
+
+Despues toca instalar docker en nuestro ambiente con el siguiente comando
+   ```
+      sudo yum install docker
+   ```
+
+Despues de instalar asignaremos al usuario docker permisos de administrador para no tener que usar el comando
+sudo cada vez que se ejecute un comando docker
+
+   ```
+      sudo usermod -a -G docker ec2-user
+   ```
+
+Despues de esto saldremos de la maquina EC2 y volveremeos a entrar para que se apliquen los cambios
+
+   ```
+      exit
+   ```
+   ```
+      ssh -i "roundrobin.pem" ec2-user@ec2-3-94-180-238.compute-1.amazonaws.com
+   ```
+Despues de volver a ingresar podemos iniciar el docker con el siguiente comando
+
+   ```
+      sudo service docker start
+   ```
+
+Y al consultar las imagenes nos daremos cuenta que no existe ninguna, por lo cual 
+las debemos desplegar en nuestro ambiente de la maquina EC2
+   ```
+      docker images
+   ```
