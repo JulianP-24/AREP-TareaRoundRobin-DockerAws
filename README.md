@@ -269,3 +269,24 @@ las debemos desplegar en nuestro ambiente de la maquina EC2
    ```
       docker images
    ```
+
+## Configuracion puertos AWS
+Ahora que tenemos instalado nuestra maquina podemos desplegar nuestras imagenes docker en el, 
+pero para eso necesitamos crear reglas de entrada para que la maquina pueda leer los puertos que 
+necesitamos; por lo cual iremos a nuestra instancia desde la consola de amazón y nos dirigiremos a 
+la pestaña de "seguridad" y oprimiremos en el link de "grupos de seguridad"
+
+![](img/configuracionPuertos.png)
+
+En reglas de entrada le damos a "editar reglas de entrada"
+
+![](img/editarReglasEntrada.png)
+
+En la pestaña que aparece, se agregaran reglas, una por cada puerto, en este caso seran 5 reglas, una 
+para el puerto ```35000``` para roundrobin, ```35001``` para logservice1, ```35002``` para logservice2, 
+```35003``` para logservice3 y ```27017``` para mongo y queda de la siguiente forma
+
+![](img/puertosReglaEntrada.png)
+
+Y ahora haremos el mismo proceso para las reglas de salida para que se pueda comunicar la información que 
+envian entre puertos
