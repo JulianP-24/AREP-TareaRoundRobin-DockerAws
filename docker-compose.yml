@@ -20,7 +20,7 @@ services:
 
   app-lb-roundrobin:
     build:
-      context: ./TALLERR
+      context: ./RoundRobin
       dockerfile: Dockerfile
     depends_on:
       - logservice1
@@ -36,7 +36,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    container_name: logservice1
+    container_name: logservices1
     ports:
       - "35001:6000"
 
@@ -46,7 +46,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    container_name: logservice2
+    container_name: logservices2
     ports:
       - "35002:6000"
 
@@ -56,7 +56,7 @@ services:
       dockerfile: Dockerfile
     depends_on:
       - db
-    container_name: logservice3
+    container_name: logservices3
     ports:
       - "35003:6000"
 
