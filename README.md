@@ -114,6 +114,9 @@ Despues podremos acceder al proyecto desplegado en nuestro docker local, consult
 Donde el puerto: 35000 es el puerto al que se enlazo con uno fisico de la maquina local y que este nos permite
 acceder, como se muestra a continuacion
 
+![](img/pruebaLocal.png)
+
+
 ## Despliegue en Docker Hub
 Para realizar el despliegue en docker hub, se crea un repositorio para subir el proyecto para despues poder
 desplegar las imagenes en AWS
