@@ -2,7 +2,10 @@ var apiclient = (function () {
     var url=window.location.href+'/taller';
     function addMessage(){
         var mensaje=document.getElementById("Message").value;
-        axios.post(url,mensaje)
+        const headers = {
+            'Content-Type': 'application/json'
+        }
+        axios.post(url,mensaje,headers)
             .then(res => {
                 getMessages();
             })
@@ -10,6 +13,7 @@ var apiclient = (function () {
     function getMessages(){
         $("#Table > tbody").empty();
         axios.get(url).then(res=>{
+            console.log(res.data)
             res.data.map(message=>{
                 $("#Table > tbody").append(
                     "<tr>" +

@@ -39,8 +39,8 @@ public class MongoDBConnection {
     }
 
     public void postMessage(Message message) {
-        MongoDatabase mongoDatabase = mongoClient.getDatabase("DockeryAWS");
-        MongoCollection<Document> mongoCollection=mongoDatabase.getCollection("mensajes");
+        MongoDatabase mongoDatabase = mongoClient.getDatabase("RoundRobinService");
+        MongoCollection<Document> mongoCollection=mongoDatabase.getCollection("Messages");
         Document document =new Document();
         document.put("message",message.getMessage());
         document.put("date",message.getDate());
