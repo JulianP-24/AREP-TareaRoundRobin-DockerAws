@@ -123,6 +123,7 @@ desplegar las imagenes en AWS
 
 * Nombre de Usuario: arep2022
 * Nombre del Repositorio: round_robin_docker
+* url: https://hub.docker.com/repository/docker/arep2022/round_robin_docker
 
 Ahora se crearan nuevos tag para las imagenes, que esto es para tener una referencia de donde queremos subirlo,
 en este caso es en el repositorio antes mencionado en docker hub. Para esto el comando es el siguiente
