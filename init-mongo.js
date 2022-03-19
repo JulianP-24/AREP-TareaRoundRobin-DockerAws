@@ -1,7 +1,7 @@
 db.createUser(
     {
-        user:"julian",
-        pwd:"julian24",
+        user:"Admin",
+        pwd:"Admin",
         roles:[{
             role:"readWrite",
             db:"RoundRobinService"

@@ -18,8 +18,8 @@ que tiene el siguiente contenido
             container_name: mongoDB
             environment:
               MONGO_INITDB_DATABASE: RoundRobinService
-              MONGO_INITDB_ROOT_USERNAME: julian
-              MONGO_INITDB_ROOT_PASSWORD: julian24
+              MONGO_INITDB_ROOT_USERNAME: Admin
+              MONGO_INITDB_ROOT_PASSWORD: Admin
             volumes:
               - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
               - mongodb:/data/db
@@ -47,7 +47,7 @@ que tiene el siguiente contenido
               dockerfile: Dockerfile
             depends_on:
               - db
-            container_name: logservices1
+            container_name: logservice1
             ports:
               - "35001:6000"
         
@@ -57,7 +57,7 @@ que tiene el siguiente contenido
               dockerfile: Dockerfile
             depends_on:
               - db
-            container_name: logservices2
+            container_name: logservice2
             ports:
               - "35002:6000"
         
@@ -67,7 +67,7 @@ que tiene el siguiente contenido
               dockerfile: Dockerfile
             depends_on:
               - db
-            container_name: logservices3
+            container_name: logservice3
             ports:
               - "35003:6000"
         
