@@ -285,7 +285,7 @@ En reglas de entrada le damos a "editar reglas de entrada"
 
 En la pestaña que aparece, se agregaran reglas, una por cada puerto, en este caso seran 5 reglas, una 
 para el puerto ```35004``` para roundrobin, ```35005``` para logservice1, ```35006``` para logservice2, 
-```35007``` para logservice3 y ```27017``` para mongo y queda de la siguiente forma
+```35007``` para logservice3 y ```27017``` para mongo.
 
 
 Y ahora haremos el mismo proceso para las reglas de salida para que se pueda comunicar la información que 
